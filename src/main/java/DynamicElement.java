@@ -16,6 +16,10 @@ public class DynamicElement extends Element {
 //        List<WebElement> elementList = element.getElementList();
 //    }
 
+    /*
+    Вынести необходимые переменные в шапку, написать простые и понятные методы.
+
+     */
     public boolean resultDynamicContent(List<WebElement> elementList, WebDriver driver) throws InterruptedException {
         List<String> oldPictureAndTextElements = new ArrayList<>();
         for (WebElement i : elementList) {
