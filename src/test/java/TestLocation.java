@@ -11,6 +11,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestLocation extends Util {
+    //
     public static DynamicControl dynamicControl;
     public static Element element;
     public static DynamicElement dynamicElement;
@@ -67,7 +68,6 @@ public class TestLocation extends Util {
     @Test
     public void testDynamicControl(){
         driver.get("http://the-internet.herokuapp.com/dynamic_controls");
-
     }
 
 }
