@@ -1,18 +1,19 @@
-import dynamicElements.Element;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
-import java.time.Duration;
+import pageObject.DynamicControl;
+import pageObject.DynamicElement;
+import pageObject.LoginPage;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestLocation extends Util {
     public static DynamicControl dynamicControl;
-    public static Element element;
     public static DynamicElement dynamicElement;
     public static LoginPage loginPage;
     public static WebDriver driver;
@@ -21,7 +22,7 @@ public class TestLocation extends Util {
 
     /*
         Конфигурации выносить в отдельный класс, название типо "DataFixture", в нем выполнять @Before, @After и тд.
-        Создание объектов страниц (DynamicElement, DynamicControl) выполнять в самом тесте, а не в конфигурации.
+        Создание объектов страниц (pageObject.DynamicElement, pageObject.DynamicControl) выполнять в самом тесте, а не в конфигурации.
         Класс Element убрать.
         Выпилить @FindBy
         После каждого теста закрывай драйвер driver.quit(), перед каждым тестом создавай новый экземпляр драйвера driver = new ChromeDriver().
@@ -29,12 +30,12 @@ public class TestLocation extends Util {
     */
     @BeforeAll
     public static void before() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver1.exe");
+//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe");
         driver = new ChromeDriver();
-        loginPage = new LoginPage(driver);
-        element = new Element();
-        dynamicElement = new DynamicElement();
-        dynamicControl = new DynamicControl();
+//        loginPage = new LoginPage(driver);
+        dynamicElement = new DynamicElement(driver);
+//        dynamicControl = new DynamicControl();
     }
 
     @Test
@@ -70,25 +71,31 @@ public class TestLocation extends Util {
     public void testPageLogoutFromAuthorization() {
         driver.get(Util.URL);
         loginPage.authorization(Util.LOGIN_NAME_POSITIVE, Util.LOGIN_PASSWORD_POSITIVE);
-        loginPage.LogoutFromAuthorization();
+        loginPage.clickLogOut();
         //Выше описал
         String actualText = driver.findElement(By.className("subheader")).getText();
         Assertions.assertEquals(expectedText, actualText);
     }
 
-    @Test
-    public void testDynamicContent() throws InterruptedException {
-        //URL в property
-        driver.get("http://the-internet.herokuapp.com/dynamic_content?with_content=static");
-        PageFactory.initElements(driver, element);
-        boolean isDynamicElement = dynamicElement.resultDynamicContent(element.getElementList(), driver);
-        assertTrue(isDynamicElement);
-    }
+//    @Test
+//    public void testDynamicContent() throws InterruptedException {
+//        //URL в property
+//        driver.get("http://the-internet.herokuapp.com/dynamic_content?with_content=static");
+//        PageFactory.initElements(driver, element);
+//        boolean isDynamicElement = dynamicElement.resultDynamicContent(element.getElementList(), driver);
+//        assertTrue(isDynamicElement);
+//    }
 
     @Test
-    public void testDynamicControl(){
+    public void testDynamicControl() {
         //URL в property
         driver.get("http://the-internet.herokuapp.com/dynamic_controls");
     }
 
+    @Test
+    public void testDynamicElement() {
+        driver.get("http://the-internet.herokuapp.com/dynamic_content");
+        dynamicElement.hasDynamicContent();
+
+    }
 }
