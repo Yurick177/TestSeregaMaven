@@ -13,18 +13,17 @@ public class DataFixture {
     protected static WebDriver driver;
     protected static Properties property;
 
-
     @BeforeAll
     public static void beforeAllTest() {
         System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe");
         property = new Properties();
-        FileInputStream fis;
         try {
-            fis = new FileInputStream("src/main/resources/config.properties");
+            FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
             property.load(fis);
         } catch (IOException e) {
             System.out.println("Файл свойств отсутствует");
         }
+
     }
     @BeforeEach
     public void beforeTest(){
