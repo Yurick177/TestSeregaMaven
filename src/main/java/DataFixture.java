@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -16,7 +17,6 @@ public class DataFixture {
     @BeforeAll
     public static void beforeAllTest() {
         System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe");
-        driver = new ChromeDriver();
         property = new Properties();
         FileInputStream fis;
         try {
@@ -25,6 +25,10 @@ public class DataFixture {
         } catch (IOException e) {
             System.out.println("Файл свойств отсутствует");
         }
+    }
+    @BeforeEach
+    public void beforeTest(){
+        driver = new ChromeDriver();
     }
 
     @AfterEach

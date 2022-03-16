@@ -26,7 +26,7 @@ public class DynamicElement {
         for (WebElement i : oldElements) {
             oldPicturesAndText.add(i.findElement(By.tagName("img")).getAttribute("src"));
         }
-        driver.findElement(clickHereLink).click();
+        driver.findElement(clickHereLink).click(); // отдельный метод
         List<WebElement> newElements = driver.findElements(pictureAndText);
         List<String> newPicturesAndText = new ArrayList<>();
         for (WebElement i : newElements) {
@@ -35,6 +35,7 @@ public class DynamicElement {
         newPicturesAndText.removeAll(oldPicturesAndText);
         return newPicturesAndText.isEmpty();
     }
+    //сравнить два списка на ассерт иквелс
 
 
     /*
