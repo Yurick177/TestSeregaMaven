@@ -14,16 +14,8 @@ public class DynamicElement {
     private final By pictureAndText = By.xpath("//div[@class = 'large-2 columns']");
     private final By clickHereLink = By.xpath("//a[@href='/dynamic_content?with_content=static']");
 
-
     public DynamicElement(WebDriver driver) {
         this.driver = driver;
-    }
-
-    public boolean hasDynamicContent() {
-        List<String> oldPicturesAndText = getImgSrc();
-        List<String> newPicturesAndText = getImgSrc();
-
-        return newPicturesAndText.isEmpty();
     }
 
     public List<String> getImgSrc() {
@@ -39,7 +31,6 @@ public class DynamicElement {
     public void getClick() {
         driver.findElement(clickHereLink).click();
     }
-    //сравнить два списка на ассерт иквелс
 
 }
 

@@ -1,20 +1,20 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageObject.DynamicElement;
 
 import java.util.List;
-import java.util.Properties;
 
 
 public class TestDynamicContent extends DataFixture {
 
+    public static DynamicElement dynamicElement;
+    public final String dynamicContentUrl = property.getProperty("dynamicContentUrl");
+
     @Test
     public void dynamicContent(){
-        WebDriver driver = new ChromeDriver();
-        DynamicElement dynamicElement = new DynamicElement(driver);
-        String dynamicContentUrl = property.getProperty("dynamicContentUrl");
+        driver = new ChromeDriver();
+        dynamicElement = new DynamicElement(driver);
         driver.get(dynamicContentUrl);
         List<String> oldPicturesAndText = dynamicElement.getImgSrc();
         dynamicElement.getClick();
