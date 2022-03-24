@@ -25,14 +25,15 @@ public class DataFixture {
         }
 
     }
+
     @BeforeEach
-    public void beforeTest(){
+    public void beforeTest() {
         driver = new ChromeDriver();
     }
 
     @AfterEach
     public void afterTest() {
-        driver.quit();
+//        driver.quit();
     }
 
 }
