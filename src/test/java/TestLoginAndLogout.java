@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pageObject.LoginPage;
 
@@ -14,6 +15,11 @@ public class TestLoginAndLogout extends DataFixture {
     public final String expectedTextLogOutAndNegative = "This is where you can log into the secure area." +
             " Enter tomsmith for the username and " +
             "SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
+
+    @BeforeAll
+    public static void start(){
+        beforeAllTest();
+    }
 
     @Test
     public void testLoginPositive() {

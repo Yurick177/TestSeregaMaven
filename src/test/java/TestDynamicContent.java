@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageObject.DynamicElement;
@@ -11,6 +12,11 @@ public class TestDynamicContent extends DataFixture {
 
     public static DynamicElement dynamicElement;
     public final String dynamicContentUrl = property.getProperty("dynamicContentUrl");
+
+    @BeforeAll
+    public static void start(){
+        beforeAllTest();
+    }
 
     @Test
     public void testDynamicContent() {
