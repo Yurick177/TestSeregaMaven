@@ -12,14 +12,12 @@ public class TestDynamicControls extends DataFixture {
 
     @Test
     public void presentCheckbox() {
-
         Assertions.assertTrue(dynamicControl.checkboxPresent());
     }
 
     @Test
     public void statusCheckboxNoIsSelected() {
         Assertions.assertFalse(dynamicControl.getCheckboxStatus());
-
     }
 
     @Test
@@ -52,11 +50,5 @@ public class TestDynamicControls extends DataFixture {
             Assertions.assertFalse(dynamicControl.isClickableLine());
         }
     }
-
-
-//тест активна ли строка ввода(кликабельна)
-//     нажать на кнопку и проверить или она нажалась
-//     стала ли кликабельной строка
-
 
 }
