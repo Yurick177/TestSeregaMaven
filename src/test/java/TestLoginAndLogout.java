@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pageObject.LoginPage;
 
@@ -16,14 +17,13 @@ public class TestLoginAndLogout extends DataFixture {
             " Enter tomsmith for the username and " +
             "SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
 
-    @BeforeAll
-    public static void start(){
-        beforeAllTest();
+    @BeforeEach
+    public void start(){
+        driver.get(loginPageUrl);
     }
 
     @Test
     public void testLoginPositive() {
-        driver.get(loginPageUrl);
         loginPage = new LoginPage(driver);
         loginPage.authorization(positiveLogin, positivePassword);
         String loginPageTextPositive = loginPage.getLoginPageText();
@@ -32,7 +32,6 @@ public class TestLoginAndLogout extends DataFixture {
 
     @Test
     public void testPageAuthorizationNegative() {
-        driver.get(loginPageUrl);
         loginPage = new LoginPage(driver);
         loginPage.authorization(negativeLogin, negativePassword);
         String loginPageTextNegative = loginPage.getLoginPageText();
@@ -42,7 +41,6 @@ public class TestLoginAndLogout extends DataFixture {
 
     @Test
     public void testPageLogoutFromAuthorization() {
-        driver.get(loginPageUrl);
         loginPage = new LoginPage(driver);
         loginPage.authorization(positiveLogin, positivePassword);
         loginPage.clickLogOut();

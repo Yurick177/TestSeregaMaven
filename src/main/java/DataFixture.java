@@ -1,7 +1,9 @@
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pageObject.DynamicControl;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -9,12 +11,10 @@ import java.util.Properties;
 public class DataFixture {
     protected static WebDriver driver;
     protected static Properties property;
-    protected static DynamicControl dynamicControl;
 
+    @BeforeAll
     public static void beforeAllTest() {
-        driver = new ChromeDriver();
-        dynamicControl = new DynamicControl(driver);
-        System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         property = new Properties();
         try {
             FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
@@ -22,11 +22,15 @@ public class DataFixture {
         } catch (IOException e) {
             System.out.println("Файл свойств отсутствует");
         }
-
     }
 
-    @AfterAll
-    public static void afterTest() {
+    @BeforeEach
+    public void beforeTest() {
+        driver = new ChromeDriver();
+    }
+
+    @AfterEach
+    public void afterTest() {
         driver.quit();
     }
 

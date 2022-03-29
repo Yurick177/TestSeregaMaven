@@ -1,12 +1,15 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pageObject.DynamicControl;
 
 public class TestDynamicControls extends DataFixture {
+    DynamicControl dynamicControl;
 
-    @BeforeAll
-    public static void start(){
-        beforeAllTest();
+
+    @BeforeEach
+    public void start() {
+        dynamicControl = new DynamicControl(driver);
         driver.get(property.getProperty("dynamicControlsUrl"));
     }
 
@@ -34,8 +37,8 @@ public class TestDynamicControls extends DataFixture {
     }
 
     @Test
-    public void changeLineStateToClickable () {
-        if(!dynamicControl.isClickableLine()){
+    public void changeLineStateToClickable() {
+        if (!dynamicControl.isClickableLine()) {
             dynamicControl.clickButtonEnableOrDisable();
             dynamicControl.waitClickableLine();
             Assertions.assertTrue(dynamicControl.isClickableLine());
@@ -44,7 +47,7 @@ public class TestDynamicControls extends DataFixture {
 
     @Test
     public void changeLineStateToNotClickable() {
-        if(dynamicControl.isClickableLine()){
+        if (dynamicControl.isClickableLine()) {
             dynamicControl.clickButtonEnableOrDisable();
             dynamicControl.waitNotClickableLine();
             Assertions.assertFalse(dynamicControl.isClickableLine());

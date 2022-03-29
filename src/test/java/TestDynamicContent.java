@@ -1,11 +1,9 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageObject.DynamicElement;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 public class TestDynamicContent extends DataFixture {
@@ -13,29 +11,28 @@ public class TestDynamicContent extends DataFixture {
     public static DynamicElement dynamicElement;
     public final String dynamicContentUrl = property.getProperty("dynamicContentUrl");
 
-    @BeforeAll
-    public static void start(){
-        beforeAllTest();
-    }
-
     @Test
     public void testDynamicContent() {
-        driver = new ChromeDriver();
         dynamicElement = new DynamicElement(driver);
         driver.get(dynamicContentUrl);
         List<String> oldPicturesAndText = dynamicElement.getImgSrc();
         dynamicElement.getClick();
         List<String> newPicturesAndText = dynamicElement.getImgSrc();
         boolean dynamicContentIsPresent = false;
-        for (int i = 0; i < oldPicturesAndText.size(); i++) {
-            String old = oldPicturesAndText.get(i);
-            String current = newPicturesAndText.get(i);
-            if (!old.equals(current)) {
-                dynamicContentIsPresent = true;
-                break;
-            }
-        }
-        assertTrue(dynamicContentIsPresent);
+        // я бы еще и текст брал и сравнивал, для большей верности. Вдруг картинки не поменяются, а тексты изменятся,
+        // тогда получим ложный отрицательный результат
+//        for (int i = 0; i < oldPicturesAndText.size(); i++) {
+//            String old = oldPicturesAndText.get(i);
+//            String current = newPicturesAndText.get(i);
+//            if (!old.equals(current)) {
+//                dynamicContentIsPresent = true;
+//                break;
+//            }
+//        }
+        // тут я говорил, что можно передать 2 коллекции в assert и сравнить их
+//        assertTrue(dynamicContentIsPresent);
+        assertNotEquals(oldPicturesAndText, newPicturesAndText);
+
     }
 
 }
