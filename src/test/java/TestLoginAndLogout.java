@@ -18,12 +18,12 @@ public class TestLoginAndLogout extends DataFixture {
 
     @BeforeEach
     public void start(){
+        loginPage = new LoginPage(driver);
         driver.get(loginPageUrl);
     }
 
     @Test
     public void testLoginPositive() {
-        loginPage = new LoginPage(driver);
         loginPage.authorization(positiveLogin, positivePassword);
         String loginPageTextPositive = loginPage.getLoginPageText();
         Assertions.assertEquals(expectedTextLoginAndPositive, loginPageTextPositive);
@@ -31,7 +31,6 @@ public class TestLoginAndLogout extends DataFixture {
 
     @Test
     public void testPageAuthorizationNegative() {
-        loginPage = new LoginPage(driver);
         loginPage.authorization(negativeLogin, negativePassword);
         String loginPageTextNegative = loginPage.getLoginPageText();
         Assertions.assertEquals(expectedTextLogOutAndNegative, loginPageTextNegative);
@@ -40,7 +39,6 @@ public class TestLoginAndLogout extends DataFixture {
 
     @Test
     public void testPageLogoutFromAuthorization() {
-        loginPage = new LoginPage(driver);
         loginPage.authorization(positiveLogin, positivePassword);
         loginPage.clickLogOut();
         String logOutPageText = loginPage.getLogOutPageText();

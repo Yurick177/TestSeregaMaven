@@ -11,6 +11,7 @@ public class TestDynamicContent extends DataFixture {
 
     public static DynamicElement dynamicElement;
     public final String dynamicContentUrl = property.getProperty("dynamicContentUrl");
+    boolean dynamicContentIsPresent;
 
     @Test
     public void testDynamicContent() {
@@ -19,7 +20,7 @@ public class TestDynamicContent extends DataFixture {
         List<String> oldPicturesAndText = dynamicElement.getImgSrc();
         dynamicElement.getClick();
         List<String> newPicturesAndText = dynamicElement.getImgSrc();
-        boolean dynamicContentIsPresent = false;
+        dynamicContentIsPresent = false;
         for (int i = 0; i < oldPicturesAndText.size(); i++) {
             String old = oldPicturesAndText.get(i);
             String current = newPicturesAndText.get(i);
@@ -28,9 +29,7 @@ public class TestDynamicContent extends DataFixture {
                 break;
             }
         }
-        assertTrue(dynamicContentIsPresent);
         assertNotEquals(oldPicturesAndText, newPicturesAndText);
-
     }
 
 }

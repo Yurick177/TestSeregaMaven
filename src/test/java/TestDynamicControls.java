@@ -6,7 +6,6 @@ import pageObject.DynamicControl;
 public class TestDynamicControls extends DataFixture {
     DynamicControl dynamicControl;
 
-
     @BeforeEach
     public void start() {
         dynamicControl = new DynamicControl(driver);
