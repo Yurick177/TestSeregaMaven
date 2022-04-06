@@ -1,6 +1,7 @@
 package pageObject;
 
 import options.BaseDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,8 +26,9 @@ public class LoginPage extends BaseDriver {
     @FindBy(className = "subheader")
     private WebElement logOutPageText;
 
-    public LoginPage() {
-        PageFactory.initElements(driver, this);
+    public LoginPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(getDriver(), this);
     }
 
     public void authorization(String name, String password) {

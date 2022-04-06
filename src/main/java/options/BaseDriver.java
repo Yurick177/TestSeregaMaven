@@ -2,12 +2,15 @@ package options;
 
 import org.openqa.selenium.WebDriver;
 
-abstract public class BaseDriver {
+public class BaseDriver {
 
-    protected static WebDriver driver;
+    private final WebDriver driver;
 
-    public static void setDriver(WebDriver webDriver) {
-        driver = webDriver;
+   protected BaseDriver(WebDriver driver) {
+        this.driver = driver;
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
 }

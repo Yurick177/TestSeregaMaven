@@ -1,9 +1,8 @@
 package options;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -11,12 +10,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-abstract public class DataFixture {
-    protected WebDriver driver;
+public class DataFixture {
+    protected static WebDriver driver;
     protected static Properties property;
 
     @BeforeAll
     public static void beforeAllTest() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         property = new Properties();
         try {
@@ -27,19 +29,9 @@ abstract public class DataFixture {
         }
     }
 
-    @BeforeEach
-    public void beforeTest() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        BaseDriver.setDriver(driver);
-//        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-//        driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
-    }
-
-    @AfterEach
-    public void afterTest() {
-        driver.quit();
+    @AfterAll
+    public static void afterTest() {
+        driver.close();
     }
 
 }

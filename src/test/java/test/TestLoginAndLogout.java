@@ -1,13 +1,13 @@
+package test;
+
 import options.DataFixture;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import pageObject.LoginPage;
 
 public class TestLoginAndLogout extends DataFixture {
 
     public static LoginPage loginPage;
-    public final String loginPageUrl = property.getProperty("loginPageUrl");
+    public static final String loginPageUrl = property.getProperty("loginPageUrl");
     public final String positiveLogin = property.getProperty("positiveLogin");
     public final String positivePassword = property.getProperty("positivePassword");
     public final String negativeLogin = property.getProperty("negativeLogin");
@@ -17,9 +17,9 @@ public class TestLoginAndLogout extends DataFixture {
             " Enter tomsmith for the username and " +
             "SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
 
-    @BeforeEach
-    public void start() {
-        loginPage = new LoginPage();
+    @BeforeAll
+    public static void start() {
+        loginPage = new LoginPage(driver);
         driver.get(loginPageUrl);
     }
 
@@ -36,7 +36,6 @@ public class TestLoginAndLogout extends DataFixture {
         String loginPageTextNegative = loginPage.getLoginPageText();
         Assertions.assertEquals(expectedTextLogOutAndNegative, loginPageTextNegative);
     }
-
 
     @Test
     public void testPageLogoutFromAuthorization() {

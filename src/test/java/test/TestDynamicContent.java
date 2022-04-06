@@ -1,3 +1,5 @@
+package test;
+
 import options.DataFixture;
 import org.junit.jupiter.api.Test;
 import pageObject.DynamicElement;
@@ -15,7 +17,7 @@ public class TestDynamicContent extends DataFixture {
 
     @Test
     public void testDynamicContent() {
-        dynamicElement = new DynamicElement();
+        dynamicElement = new DynamicElement(driver);
         driver.get(dynamicContentUrl);
         List<String> oldPicturesAndText = dynamicElement.getImgSrc();
         System.out.println(oldPicturesAndText);

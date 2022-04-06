@@ -27,15 +27,16 @@ public class DynamicControl extends BaseDriver {
     @FindBy(xpath = "//input[@type = 'text']")
     private WebElement clickableLine;
 
-    public DynamicControl() {
-        PageFactory.initElements(driver, this);
-        this.webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    public DynamicControl(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(getDriver(), this);
+        webDriverWait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
     }
 
     public void clickButtonRemoveAndAddCheckbox() {
         if (checkboxPresent()) {
             clickButtonRemove();
-            webDriverWait.until(ExpectedConditions.stalenessOf(driver.findElement(checkbox)));
+            webDriverWait.until(ExpectedConditions.stalenessOf(getDriver().findElement(checkbox)));
         } else {
             clickButtonRemove();
             webDriverWait.until(ExpectedConditions.presenceOfElementLocated(checkbox));
@@ -43,18 +44,18 @@ public class DynamicControl extends BaseDriver {
     }
 
     public boolean clickCheckbox() {
-        WebElement element = driver.findElement(checkbox);
+        WebElement element = getDriver().findElement(checkbox);
         element.click();
         return element.isSelected();
     }
 
     public boolean getCheckboxStatus() {
-        return driver.findElement(checkbox).isSelected();
+        return getDriver().findElement(checkbox).isSelected();
     }
 
 
     public boolean checkboxPresent() {
-        return driver.findElements(checkbox).size() > 0;
+        return getDriver().findElements(checkbox).size() > 0;
     }
 
     public void clickButtonRemove() {
