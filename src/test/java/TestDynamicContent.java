@@ -1,10 +1,10 @@
+import options.DataFixture;
 import org.junit.jupiter.api.Test;
 import pageObject.DynamicElement;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class TestDynamicContent extends DataFixture {
@@ -15,9 +15,10 @@ public class TestDynamicContent extends DataFixture {
 
     @Test
     public void testDynamicContent() {
-        dynamicElement = new DynamicElement(driver);
+        dynamicElement = new DynamicElement();
         driver.get(dynamicContentUrl);
         List<String> oldPicturesAndText = dynamicElement.getImgSrc();
+        System.out.println(oldPicturesAndText);
         dynamicElement.getClick();
         List<String> newPicturesAndText = dynamicElement.getImgSrc();
         dynamicContentIsPresent = false;

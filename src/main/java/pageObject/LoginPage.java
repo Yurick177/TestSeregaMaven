@@ -1,11 +1,11 @@
 package pageObject;
 
-import org.openqa.selenium.WebDriver;
+import options.BaseDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends BaseDriver {
 
     @FindBy(id = "username")
     private WebElement usernameField;
@@ -25,7 +25,7 @@ public class LoginPage {
     @FindBy(className = "subheader")
     private WebElement logOutPageText;
 
-    public LoginPage(WebDriver driver) {
+    public LoginPage() {
         PageFactory.initElements(driver, this);
     }
 

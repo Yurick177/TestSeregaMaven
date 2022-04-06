@@ -1,3 +1,4 @@
+import options.DataFixture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,8 @@ public class TestLoginAndLogout extends DataFixture {
             "SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
 
     @BeforeEach
-    public void start(){
-        loginPage = new LoginPage(driver);
+    public void start() {
+        loginPage = new LoginPage();
         driver.get(loginPageUrl);
     }
 

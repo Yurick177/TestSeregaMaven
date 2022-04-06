@@ -1,5 +1,6 @@
 package pageObject;
 
+import options.BaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DynamicElement {
+public class DynamicElement extends BaseDriver {
 
     @FindBy(xpath = "//div[@class = 'large-2 columns']")
     private List<WebElement> pictureAndText;
@@ -17,8 +18,8 @@ public class DynamicElement {
     @FindBy(linkText = "click here")
     private WebElement clickHereLink;
 
-    public DynamicElement(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+    public DynamicElement() {
+        PageFactory.initElements(driver, this);
     }
 
     public List<String> getImgSrc() {

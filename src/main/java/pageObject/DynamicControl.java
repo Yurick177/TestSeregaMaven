@@ -1,9 +1,9 @@
 package pageObject;
 
+import options.BaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,9 +13,8 @@ import java.time.Duration;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.not;
 
-public class DynamicControl {
+public class DynamicControl extends BaseDriver {
 
-    private final WebDriver driver;
     private final WebDriverWait webDriverWait;
     private final By checkbox = By.xpath("//input[@type='checkbox']");
 
@@ -28,9 +27,8 @@ public class DynamicControl {
     @FindBy(xpath = "//input[@type = 'text']")
     private WebElement clickableLine;
 
-    public DynamicControl(WebDriver driver) {
-        PageFactory.initElements(driver,this);
-        this.driver = driver;
+    public DynamicControl() {
+        PageFactory.initElements(driver, this);
         this.webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
@@ -72,11 +70,11 @@ public class DynamicControl {
 
     }
 
-    public void waitClickableLine(){
+    public void waitClickableLine() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(clickableLine));
     }
 
-    public void waitNotClickableLine(){
+    public void waitNotClickableLine() {
         webDriverWait.until(not(ExpectedConditions.elementToBeClickable(clickableLine)));
     }
 

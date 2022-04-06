@@ -1,3 +1,4 @@
+import options.DataFixture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,7 @@ public class TestDynamicControls extends DataFixture {
 
     @BeforeEach
     public void start() {
-        dynamicControl = new DynamicControl(driver);
+        dynamicControl = new DynamicControl();
         driver.get(property.getProperty("dynamicControlsUrl"));
     }
 
