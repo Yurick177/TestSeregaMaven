@@ -10,10 +10,10 @@ public class TestDynamicControls extends DataFixture {
     DynamicControl dynamicControl;
 
     @BeforeEach
-    public void start() {
-        dynamicControl = new DynamicControl(driver);
-        driver.get(property.getProperty("dynamicControlsUrl"));
-    }
+//    public void start() {
+//        dynamicControl = new DynamicControl(driver);
+//        driver.get(property.getProperty("dynamicControlsUrl"));
+//    }
 
     @Test
     public void presentCheckbox() {

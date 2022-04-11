@@ -1,5 +1,6 @@
 package test;
 
+import com.codeborne.selenide.Selenide;
 import options.DataFixture;
 import org.junit.jupiter.api.*;
 import pageObject.LoginPage;
@@ -7,7 +8,7 @@ import pageObject.LoginPage;
 public class TestLoginAndLogout extends DataFixture {
 
     public static LoginPage loginPage;
-    public static final String loginPageUrl = property.getProperty("loginPageUrl");
+    public final String loginPageUrl = property.getProperty("loginPageUrl");
     public final String positiveLogin = property.getProperty("positiveLogin");
     public final String positivePassword = property.getProperty("positivePassword");
     public final String negativeLogin = property.getProperty("negativeLogin");
@@ -19,15 +20,16 @@ public class TestLoginAndLogout extends DataFixture {
 
     @BeforeAll
     public static void start() {
-        loginPage = new LoginPage(driver);
-        driver.get(loginPageUrl);
+
     }
 
     @Test
     public void testLoginPositive() {
-        loginPage.authorization(positiveLogin, positivePassword);
-        String loginPageTextPositive = loginPage.getLoginPageText();
-        Assertions.assertEquals(expectedTextLoginAndPositive, loginPageTextPositive);
+        Selenide.open("https://mail.ru/");
+//        loginPage = new LoginPage(loginPageUrl);
+//        loginPage.authorization(positiveLogin, positivePassword);
+//        String loginPageTextPositive = loginPage.getLoginPageText();
+//        Assertions.assertEquals(expectedTextLoginAndPositive, loginPageTextPositive);
     }
 
     @Test

@@ -1,40 +1,32 @@
 package pageObject;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import options.BaseDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends BaseDriver {
+import static com.codeborne.selenide.Selenide.$x;
 
-    @FindBy(id = "username")
-    private WebElement usernameField;
+public class LoginPage {
 
-    @FindBy(id = "password")
-    private WebElement passwordField;
+    private final SelenideElement usernameField = $x("username");
+    private final SelenideElement passwordField = $x("password");
+    private final SelenideElement signInButton = $x(".radius");
+    private final SelenideElement logOutButton = $x("button");
+    private final SelenideElement loginPageText = $x("subheader");
+    private final SelenideElement logOutPageText = $x("subheader");
 
-    @FindBy(css = ".radius")
-    private WebElement signInButton;
-
-    @FindBy(className = "button")
-    private WebElement logOutButton;
-
-    @FindBy(className = "subheader")
-    private WebElement loginPageText;
-
-    @FindBy(className = "subheader")
-    private WebElement logOutPageText;
-
-    public LoginPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(getDriver(), this);
+    public LoginPage(String url) {
+        Selenide.open(url);
     }
 
     public void authorization(String name, String password) {
-        usernameField.sendKeys(name);
-        passwordField.sendKeys(password);
-        signInButton.submit();
+        usernameField.setValue(name);
+        passwordField.setValue(password);
+        signInButton.click();
     }
 
     public void clickLogOut() {
@@ -42,7 +34,7 @@ public class LoginPage extends BaseDriver {
     }
 
     public String getLoginPageText() {
-        return loginPageText.getText();
+        return loginPageText.text();
     }
 
     public String getLogOutPageText() {
