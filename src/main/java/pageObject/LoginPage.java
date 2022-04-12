@@ -2,22 +2,18 @@ package pageObject;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import options.BaseDriver;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
 
-    private final SelenideElement usernameField = $x("username");
-    private final SelenideElement passwordField = $x("password");
-    private final SelenideElement signInButton = $x(".radius");
-    private final SelenideElement logOutButton = $x("button");
-    private final SelenideElement loginPageText = $x("subheader");
-    private final SelenideElement logOutPageText = $x("subheader");
+    private final SelenideElement usernameField = $(By.id("username"));
+    private final SelenideElement passwordField = $(By.id("password"));
+    private final SelenideElement signInButton = $(By.cssSelector(".radius"));
+    private final SelenideElement logOutButton = $(By.className("button"));
+    private final SelenideElement loginPageText = $(By.className("subheader"));
+    private final SelenideElement logOutPageText = $(By.className("subheader"));
 
     public LoginPage(String url) {
         Selenide.open(url);

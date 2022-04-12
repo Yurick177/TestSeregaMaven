@@ -1,8 +1,9 @@
 package test;
 
-import com.codeborne.selenide.Selenide;
 import options.DataFixture;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pageObject.LoginPage;
 
 public class TestLoginAndLogout extends DataFixture {
@@ -18,18 +19,16 @@ public class TestLoginAndLogout extends DataFixture {
             " Enter tomsmith for the username and " +
             "SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
 
-    @BeforeAll
-    public static void start() {
-
+    @BeforeEach
+    public void beforeEach() {
+        loginPage = new LoginPage(loginPageUrl);
     }
 
     @Test
     public void testLoginPositive() {
-        Selenide.open("https://mail.ru/");
-//        loginPage = new LoginPage(loginPageUrl);
-//        loginPage.authorization(positiveLogin, positivePassword);
-//        String loginPageTextPositive = loginPage.getLoginPageText();
-//        Assertions.assertEquals(expectedTextLoginAndPositive, loginPageTextPositive);
+        loginPage.authorization(positiveLogin, positivePassword);
+        String loginPageTextPositive = loginPage.getLoginPageText();
+        Assertions.assertEquals(expectedTextLoginAndPositive, loginPageTextPositive);
     }
 
     @Test
