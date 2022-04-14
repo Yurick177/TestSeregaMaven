@@ -28,8 +28,8 @@ public class DataFixture {
         }
     }
 
-        @BeforeAll
-    public static void start(){
+    @BeforeAll
+    public static void start() {
         setUp();
     }
 

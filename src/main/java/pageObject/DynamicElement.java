@@ -1,33 +1,29 @@
 package pageObject;
 
-import options.BaseDriver;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DynamicElement extends BaseDriver {
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
-    @FindBy(xpath = "//div[@class = 'large-10 columns large-centered']")
-    private List<WebElement> pictureAndText;
+public class DynamicElement {
 
-    @FindBy(linkText = "click here")
-    private WebElement clickHereLink;
+    private final List<SelenideElement> pictureAndText = $$(By.xpath("//div[@class = 'large-10 columns large-centered']"));
+    private final SelenideElement clickHereLink = $(By.linkText("click here"));
 
-    public DynamicElement(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(getDriver(), this);
+    public DynamicElement(String Url) {
+        Selenide.open(Url);
     }
 
     public List<String> getImgSrc() {
         List<String> picturesAndText = new ArrayList<>();
-        for (WebElement i : pictureAndText) {
-            picturesAndText.add(i.findElement(By.tagName("img")).getAttribute("src"));
-            picturesAndText.add(i.findElement(By.className("large-10")).getText());
+        for (SelenideElement i : pictureAndText) {
+            picturesAndText.add(i.$(By.tagName("img")).getAttribute("src"));
+            picturesAndText.add(i.$(By.className("large-10")).getText());
 
         }
         return picturesAndText;

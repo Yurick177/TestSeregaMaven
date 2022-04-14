@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 import pageObject.DynamicControl;
 
 public class TestDynamicControls extends DataFixture {
+
     DynamicControl dynamicControl;
+    public String dynamicControlsUrl = property.getProperty("dynamicControlsUrl");
 
     @BeforeEach
-//    public void start() {
-//        dynamicControl = new DynamicControl(driver);
-//        driver.get(property.getProperty("dynamicControlsUrl"));
-//    }
+    public void beforeEach() {
+        dynamicControl = new DynamicControl(dynamicControlsUrl);
+    }
 
     @Test
     public void presentCheckbox() {

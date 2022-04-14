@@ -15,24 +15,23 @@ public class TestDynamicContent extends DataFixture {
     public final String dynamicContentUrl = property.getProperty("dynamicContentUrl");
     boolean dynamicContentIsPresent;
 
-//    @Test
-//    public void testDynamicContent() {
-//        dynamicElement = new DynamicElement(driver);
-//        driver.get(dynamicContentUrl);
-//        List<String> oldPicturesAndText = dynamicElement.getImgSrc();
-//        System.out.println(oldPicturesAndText);
-//        dynamicElement.getClick();
-//        List<String> newPicturesAndText = dynamicElement.getImgSrc();
-//        dynamicContentIsPresent = false;
-//        for (int i = 0; i < oldPicturesAndText.size(); i++) {
-//            String old = oldPicturesAndText.get(i);
-//            String current = newPicturesAndText.get(i);
-//            if (!old.equals(current)) {
-//                dynamicContentIsPresent = true;
-//                break;
-//            }
-//        }
-//        assertNotEquals(oldPicturesAndText, newPicturesAndText);
-//    }
+    @Test
+    public void testDynamicContent() {
+        dynamicElement = new DynamicElement(dynamicContentUrl);
+        List<String> oldPicturesAndText = dynamicElement.getImgSrc();
+        System.out.println(oldPicturesAndText);
+        dynamicElement.getClick();
+        List<String> newPicturesAndText = dynamicElement.getImgSrc();
+        dynamicContentIsPresent = false;
+        for (int i = 0; i < oldPicturesAndText.size(); i++) {
+            String old = oldPicturesAndText.get(i);
+            String current = newPicturesAndText.get(i);
+            if (!old.equals(current)) {
+                dynamicContentIsPresent = true;
+                break;
+            }
+        }
+        assertNotEquals(oldPicturesAndText, newPicturesAndText);
+    }
 
 }
