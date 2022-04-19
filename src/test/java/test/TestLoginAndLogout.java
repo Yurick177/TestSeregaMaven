@@ -24,6 +24,7 @@ public class TestLoginAndLogout extends DataFixture {
         loginPage = new LoginPage(loginPageUrl);
     }
 
+    //правильно будет вынести страницу после успешного логина в отдельный пэйджОбджект, так как это уже совсем другая страница
     @Test
     public void testLoginPositive() {
         loginPage.authorization(positiveLogin, positivePassword);

@@ -48,6 +48,10 @@ public class TestDynamicControls extends DataFixture {
         }
     }
 
+    //этот тест прям верх гениальности и находчивости)))
+    //если ты пройдешь дебагом, то ты увидишь, что в этом тесте выполнится только одна строка с условием if
+    //у нас поле некликабельное, а условие в иф будет выполнятся только в случае если оно кликабельно. потому тест проходит мимо строк
+    //
     @Test
     public void changeLineStateToNotClickable() {
         if (dynamicControl.isClickableLine()) {
