@@ -43,6 +43,17 @@
             <artifactId>selenide</artifactId>
             <version>6.3.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -61,7 +72,7 @@
                         </property>
                         <property>
                             <name>allure.results.directory</name>
-                            <value>${project.build.directory}/allure-results</value>
+                            <value>target/allure-results</value>
                         </property>
                     </systemProperties>
                 </configuration>
@@ -77,6 +88,15 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <reportVersion>2.6.0</reportVersion>
+                </configuration>
             </plugin>
         </plugins>
     </build>

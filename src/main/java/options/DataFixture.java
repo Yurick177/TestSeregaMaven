@@ -18,7 +18,7 @@ public class DataFixture {
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
         Configuration.browserSize = "1920x1080";
-        Configuration.headless = false; // true если не хотим чтобы отображалось то, что делается во время теста в браузере
+        Configuration.headless = true; // true если не хотим чтобы отображалось то, что делается во время теста в браузере
         property = new Properties();
         try {
             FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
