@@ -54,10 +54,10 @@ public class TestDynamicControls extends DataFixture {
     //
     @Test
     public void changeLineStateToNotClickable() {
-        if (dynamicControl.isClickableLine()) {
+        if (!dynamicControl.isClickableLine()) {
             dynamicControl.clickButtonEnableOrDisable();
             dynamicControl.waitNotClickableLine();
-            Assertions.assertFalse(dynamicControl.isClickableLine());
+            Assertions.assertTrue(dynamicControl.isClickableLine());
         }
     }
 
