@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pageObject.LoginPage;
 
+
 public class TestLoginAndLogout extends DataFixture {
 
     public static LoginPage loginPage;
