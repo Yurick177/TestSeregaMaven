@@ -97,9 +97,12 @@
                 <version>2.22.2</version>
 
                 <configuration>
+                    <includes>
+                        <include>*/**</include>
+                    </includes>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
                     </argLine>
                     <systemProperties>
                         <property>
@@ -128,6 +131,8 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <testOutputDirectory>target/classes</testOutputDirectory>
     </build>
     <profiles>
         <profile>
